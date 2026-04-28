@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Mayorista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #181818;
+    --surface2: #222;
+    --border: #2a2a2a;
+    --accent: #e8c547;
+    --accent2: #c8a82a;
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --danger: #e74c3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .logo span { color: var(--text); }
+
+  .header-search {
+    flex: 1;
+    max-width: 380px;
+    margin: 0 2rem;
+  }
+  .header-search input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .header-search input:focus { border-color: var(--accent); }
+  .header-search input::placeholder { color: var(--text-muted); }
+
+  .cart-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.15s;
+  }
+  .cart-btn:hover { background: var(--accent2); }
+  .cart-badge {
+    background: #000;
+    color: var(--accent);
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    font-size: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+
+  /* LAYOUT */
+  .container {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: calc(100vh - 64px);
+  }
+
+  /* SIDEBAR */
+  aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+
+  .aside-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cat-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 1.5rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: all 0.12s;
+    border-left: 3px solid transparent;
+  }
+  .cat-link:hover { color: var(--text); background: var(--surface2); }
+  .cat-link.active { color: var(--accent); border-left-color: var(--accent); background: rgba(232,197,71,0.06); }
+  .cat-count {
+    font-size: 0.75rem;
+    background: var(--surface2);
+    padding: 1px 6px;
+    color: var(--text-muted);
+  }
+  .cat-link.active .cat-count { background: rgba(232,197,71,0.15); color: var(--accent); }
+
+  /* MAIN */
+  main {
+    padding: 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .section-count {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* PRODUCT TABLE */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 3rem;
+  }
+  .product-table thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .product-table thead th:last-child { text-align: center; }
+  .product-table thead th.price-col { text-align: right; }
+
+  .product-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  .product-table tbody tr:hover { background: var(--surface2); }
+
+  .product-table td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .product-code {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    margin-top: 2px;
+  }
+
+  .price-cell {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .price-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .price-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    display: block;
+  }
+
+  /* ADD TO CART BUTTON */
+  .qty-cell { text-align: center; }
+  .qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  .qty-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 26px; height: 26px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.1s;
+  }
+  .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .qty-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 26px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .qty-input:focus { border-color: var(--accent); }
+  .add-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.12s;
+    margin-left: 0.5rem;
+  }
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .add-btn.added { border-color: var(--accent); color: var(--accent); background: rgba(232,197,71,0.08); }
+
+  /* CART MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 200;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .cart-panel {
+    background: var(--surface);
+    width: 420px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border);
+    animation: slideIn 0.2s ease;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  .cart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cart-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+  .close-btn:hover { color: var(--text); }
+
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  .cart-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .cart-item-name { font-size: 0.85rem; font-weight: 500; }
+  .cart-item-detail { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .cart-item-price {
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 2px 4px;
+    float: right;
+  }
+  .cart-item-remove:hover { color: var(--danger); }
+
+  .cart-footer {
+    padding: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .total-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .total-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .order-form { display: flex; flex-direction: column; gap: 0.6rem; }
+  .order-form input, .order-form textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.6rem 0.75rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    width: 100%;
+  }
+  .order-form input:focus, .order-form textarea:focus { border-color: var(--accent); }
+  .order-form input::placeholder, .order-form textarea::placeholder { color: var(--text-muted); }
+  .order-form textarea { resize: vertical; min-height: 60px; }
+
+  .send-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0.85rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    transition: background 0.15s;
+  }
+  .send-btn:hover { background: var(--accent2); }
+  .send-btn:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+
+  .success-msg {
+    background: rgba(39,174,96,0.15);
+    border: 1px solid #27ae60;
+    color: #2ecc71;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    text-align: center;
+    display: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; }
+    aside { display: none; }
+    .cart-panel { width: 100vw; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  .update-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: right;
+    margin-bottom: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Mayorista <span>Catálogo</span></div>
+  <div class="header-search">
+    <input type="text" id="searchInput" placeholder="🔍  Buscar producto..." oninput="filterProducts()">
+  </div>
+  <button class="cart-btn" onclick="toggleCart()">
+    🛒 Pedido
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<div class="container">
+  <aside>
+    <div class="aside-title">Categorías</div>
+    <div id="catList"></div>
+  </aside>
+
+  <main id="mainContent"></main>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal-overlay" id="cartModal" onclick="closeCartOutside(event)">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <div class="cart-title">Tu Pedido</div>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Tu pedido está vacío</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span class="total-label">Total Estimado</span>
+        <span class="total-val" id="cartTotal">$0</span>
+      </div>
+      <div class="order-form">
+        <input type="text" id="clientName" placeholder="Tu nombre *" required>
+        <input type="text" id="clientPhone" placeholder="Teléfono / WhatsApp *" required>
+        <input type="email" id="clientEmail" placeholder="Email (para confirmación)">
+        <textarea id="clientNotes" placeholder="Notas adicionales..."></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendOrder()">Enviar Pedido por WhatsApp</button>
+      </div>
+      <div class="success-msg" id="successMsg">✓ Pedido enviado correctamente</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = {"ADEREZOS":[{"codigo":"9791000001449","nombre":"ADEREZOS CONDIMAX AJI BIDON X5L XUNI","mayorista":21830},{"codigo":"9791000001432","nombre":"ADEREZOS CONDIMAX AJI POMO X 270GRS XUN","mayorista":2309},{"codigo":"9791000001487","nombre":"ADEREZOS DANICA BARBACOA SACHE  X3K","mayorista":9857},{"codigo":"9791000001531","nombre":"ADEREZOS DANICA GOLF  X2.9KG","mayorista":9930},{"codigo":"9791000001463","nombre":"ADEREZOS DANICA KETCHUP SACHE X3K","mayorista":8352},{"codigo":"9791000001456","nombre":"ADEREZOS DANICA MAYODAN SACHE X3K","mayorista":5800},{"codigo":"9791000001500","nombre":"ADEREZOS DANICA MAYONESA FIESTA  X500GR","mayorista":1449},{"codigo":"9791000001494","nombre":"ADEREZOS DANICA MAYONESA FIESTA SACHE X2.9","mayorista":6960},{"codigo":"9791000001470","nombre":"ADEREZOS DANICA MOSTAZA SACHE X3K","mayorista":6380},{"codigo":"9791000001913","nombre":"ADEREZOS NATURA GOLF X125GR","mayorista":928}],"BEBIDAS":[{"codigo":"9791000001555","nombre":"BEBIDAS GLON AGUA MINERAL X500ML","mayorista":696}],"CONGELADOS":[{"codigo":"9791000002026","nombre":"CONGELADOS BLACK LABEL HAMBURGUESAS X80GRS","mayorista":1526},{"codigo":"9791000001951","nombre":"CONGELADOS COOLMIND PAPAS X2K","mayorista":6696},{"codigo":"9791000001968","nombre":"CONGELADOS FRIAR MEDALLONES CHICOS X55GR","mayorista":964},{"codigo":"9791000002033","nombre":"CONGELADOS LA DELFINA MEDALLON CAJITAS DE 4 UNI X65GRS","mayorista":1791},{"codigo":"9791000002019","nombre":"CONGELADOS WELTY MEDALLON DE CARNE X 110GRS XUNI","mayorista":1720}],"COPETIN":[{"codigo":"9791000001739","nombre":"COPETIN PUENTE DEL INCA LLUVIA DE PAPA XK","mayorista":6960}],"DESCARTABLES":[{"codigo":"9791000002071","nombre":"DESCARTABLES S/M BANDEJA 105 OVAL X100","mayorista":5501},{"codigo":"9791000002040","nombre":"DESCARTABLES S/M BOBINA DE PAPEL XUNI","mayorista":14060},{"codigo":"9791000001517","nombre":"DESCARTABLES S/M BOLSA CAMISETA 40X50 XUNI","mayorista":1157},{"codigo":"9791000001883","nombre":"DESCARTABLES S/M ESPADITAS X100UNI","mayorista":801},{"codigo":"9791000002064","nombre":"DESCARTABLES S/M OBLEAS NUM 18 X100UNI","mayorista":8237},{"codigo":"9791000001906","nombre":"DESCARTABLES S/M POMO CONDIMENTOS XLT","mayorista":5524},{"codigo":"9791000001876","nombre":"DESCARTABLES S/M POMO PARA CONDIMENTOS GRANDE XUNI","mayorista":2069},{"codigo":"9791000001890","nombre":"DESCARTABLES S/M PORTA PANCHOS  X100","mayorista":1400},{"codigo":"9791000002057","nombre":"DESCARTABLES S/M PORTA PANCHOS X500UN","mayorista":6998}],"EMBUTIDOS":[{"codigo":"9791000002002","nombre":"EMBUTIDOS BARK SALCHICHAS SUPER PANCHO X 6 XUNI","mayorista":1955},{"codigo":"9791000001999","nombre":"EMBUTIDOS CAP SALCHICHAS CHICAS X6UNI","mayorista":962},{"codigo":"9791000001944","nombre":"EMBUTIDOS CARCARAÑA SALCHICHAS X190GRS","mayorista":966},{"codigo":"9791000001937","nombre":"EMBUTIDOS FRIAR SACHICHAS X890GR","mayorista":4538},{"codigo":"9791000001982","nombre":"EMBUTIDOS GRANJA IRIS SALCHICHA X12","mayorista":4320}],"FIAMBRES":[{"codigo":"00111","nombre":"FIAMBRES CENTURION PANCETA AHUMADA XK","mayorista":13923},{"codigo":"00097","nombre":"FIAMBRES CERDOS Y CIA JAMONDA (PERNIL) XK","mayorista":6380},{"codigo":"00093","nombre":"FIAMBRES CERDOS Y CIA PALETA COCIDA PREMIUM XK","mayorista":6032},{"codigo":"00094","nombre":"FIAMBRES CERDOS Y CIA PALETA SADWICHERA XK","mayorista":3944},{"codigo":"00095","nombre":"FIAMBRES CERDOS Y CIA QUESO DE CERDO XK","mayorista":4629},{"codigo":"00096","nombre":"FIAMBRES CERDOS Y CIA SALAME BASTON XK","mayorista":11484},{"codigo":"00098","nombre":"FIAMBRES CERDOS Y CIA SALCHICHON CON JAMON XK","mayorista":4629},{"codigo":"00107","nombre":"FIAMBRES CMM SALAME CATE XK","mayorista":8816},{"codigo":"00102","nombre":"FIAMBRES CUATRO CONDES JAMONADA (PERNIL) XK","mayorista":6380},{"codigo":"00115","nombre":"FIAMBRES SAN FRANCISCO PATA ( PERNIL) XK","mayorista":6527},{"codigo":"00108","nombre":"FIAMBRES SCUDETTO JAMON COCIDO CON O SIN CUERO XK","mayorista":9826},{"codigo":"00109","nombre":"FIAMBRES SCUDETTO PANCETA AHUMADA XK","mayorista":11392},{"codigo":"00100","nombre":"FIAMBRES TROZER EMPAREDADO XK","mayorista":4833},{"codigo":"00119","nombre":"FIAMBRES TROZER JAMON COCIDO XK","mayorista":9984},{"codigo":"00117","nombre":"FIAMBRES TROZER MORTADELA XK","mayorista":5522},{"codigo":"00099","nombre":"FIAMBRES TROZER PALETA COCIDA XK","mayorista":6438},{"codigo":"00118","nombre":"FIAMBRES TROZER PERNIL/PATA DE CERDO XK","mayorista":6629},{"codigo":"00101","nombre":"FIAMBRES TROZER SALCHICHON CON JAMON XK","mayorista":1160},{"codigo":"00116","nombre":"FIAMBRES TROZER SALCHICHON PRIMAVERA XK","mayorista":5873}],"GRASA":[{"codigo":"9791000001524","nombre":"GRASA OLGUITA BOBINA PAQUETE X500GRS","mayorista":1682}],"LACTEOS":[{"codigo":"9791000001920","nombre":"LACTEOS TONADITA CREMA DE LECHE X200CM","mayorista":1931}],"LIMPIEZA":[{"codigo":"9791000001838","nombre":"LIMPIEZA S/M CABO ESCOBILLON XUN","mayorista":1534},{"codigo":"9791000001852","nombre":"LIMPIEZA S/M DESENGRASANTE BIDON X5L","mayorista":6490},{"codigo":"9791000001845","nombre":"LIMPIEZA S/M DESODORANTE PISO BIDON X5LT","mayorista":4248},{"codigo":"9791000001869","nombre":"LIMPIEZA S/M DETERGENTE BIDON X5K","mayorista":5310},{"codigo":"9791000001821","nombre":"LIMPIEZA S/M ESCOBILLON XUNI","mayorista":2950},{"codigo":"9791000001791","nombre":"LIMPIEZA S/M ESPONJA XUNI","mayorista":472},{"codigo":"9791000001814","nombre":"LIMPIEZA S/M TRAPO DE PISO XUNI","mayorista":1770},{"codigo":"9791000001807","nombre":"LIMPIEZA S/M VALERINA TRAPO AMARILLO XUNI","mayorista":531}],"MANTECAS":[{"codigo":"9791000001777","nombre":"MENTECAS GLUCELAT MANTECA X200GR","mayorista":2104}],"PASTAS":[{"codigo":"9791000001685","nombre":"PASTAS IL BAMBINO CAPELETTIS CARNE X500","mayorista":1669},{"codigo":"9791000001654","nombre":"PASTAS IL BAMBINO CAPELLETTIS JAMON Y MUZZARELLA X500","mayorista":1669},{"codigo":"9791000001975","nombre":"PASTAS IL BAMBINO MASA EMPANDAS/HORNO,CRIOLLAS XUNI","mayorista":937},{"codigo":"9791000001722","nombre":"PASTAS IL BAMBINO ÑOQUIS X500GR","mayorista":1438},{"codigo":"9791000001692","nombre":"PASTAS IL BAMBINO RAVIOLES 4 QUESOS X500","mayorista":1699},{"codigo":"9791000001647","nombre":"PASTAS IL BAMBINO RAVIOLES 4 QUESOS XK","mayorista":2693},{"codigo":"9791000001715","nombre":"PASTAS IL BAMBINO RAVIOLES JAMON Y MUZZARELLA X500GR","mayorista":1699},{"codigo":"9791000001623","nombre":"PASTAS IL BAMBINO RAVIOLES JAMON Y MUZZARELLA XK","mayorista":2693},{"codigo":"9791000001616","nombre":"PASTAS IL BAMBINO RAVIOLES POLLO Y ESPINACA XK","mayorista":2693},{"codigo":"9791000001708","nombre":"PASTAS IL BAMBINO RAVIOLES POLLO Y ESPINACAS X500","mayorista":1699},{"codigo":"9791000001630","nombre":"PASTAS IL BAMBINO SORRENTINOS JAMON Y MUZZARELLA X500GR","mayorista":2155},{"codigo":"9791000001661","nombre":"PASTAS IL BAMBINO TALLARINES CINTA 500GR","mayorista":1137},{"codigo":"9791000001678","nombre":"PASTAS IL BAMBINO TALLARINES FRESCOS X500GR","mayorista":1274},{"codigo":"9791000001753","nombre":"PASTAS LA MINUCHA MOSTACHOL X500GRS","mayorista":720},{"codigo":"9791000001746","nombre":"PASTAS LA MINUCHA TIRABUZON X500GR","mayorista":720}],"PRODUCCION":[{"codigo":"9791000001579","nombre":"PRODUCCION S/M JAMON FETEADO XK","mayorista":9090},{"codigo":"9791000001562","nombre":"PRODUCCION S/M QUESO FETEADO XK","mayorista":10543}],"QUESOS":[{"codigo":"00114","nombre":"QUESOS ALLOA ROQUEFORT XK","mayorista":11935},{"codigo":"00113","nombre":"QUESOS ARIANNA MUZZARELLA XK","mayorista":7681},{"codigo":"00089","nombre":"QUESOS BUDASSI BARRA TYBO XK","mayorista":8120},{"codigo":"00090","nombre":"QUESOS BUDASSI ROMANITO XK","mayorista":9860},{"codigo":"00091","nombre":"QUESOS BUDASSI SARDO XK","mayorista":9676},{"codigo":"00103","nombre":"QUESOS CUATRO HERMANOS MUZZARELLA XK","mayorista":8611},{"codigo":"00092","nombre":"QUESOS DESTINO CREMOSO XK","mayorista":6496},{"codigo":"00104","nombre":"QUESOS DON JUAN MUZZARELLA XK","mayorista":6976},{"codigo":"00112","nombre":"QUESOS KENCRAY CREMOSO XK","mayorista":7472},{"codigo":"00105","nombre":"QUESOS LCA CREMOSO PIZZERO XK","mayorista":5360},{"codigo":"00106","nombre":"QUESOS LCA MUZZARELLA LA SUECA XK","mayorista":6380},{"codigo":"00110","nombre":"QUESOS QUESADA MUZZARELLA EN BARRA XK","mayorista":9976}],"SALSAS":[{"codigo":"9791000001586","nombre":"SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X1LT","mayorista":1392},{"codigo":"9791000001609","nombre":"SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X310GR","mayorista":804},{"codigo":"9791000001593","nombre":"SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X500GR","mayorista":1160},{"codigo":"9791000001760","nombre":"SALSAS LATA SALSA DE TOMATE X8K","mayorista":8400}],"TUBO":[{"codigo":"9791000001548","nombre":"TUBO S/M GAS CARBONICO XUNI","mayorista":25800}]};
+
+const cart = {};
+let currentMode = 'mayorista';
+
+function fmt(n) {
+  return '$' + n.toLocaleString('es-AR');
+}
+
+function buildSidebar() {
+  const list = document.getElementById('catList');
+  let html = `<div class="cat-link active" onclick="scrollTo('ALL')" data-cat="ALL">
+    <span>Todos</span>
+    <span class="cat-count">${Object.values(PRODUCTS).reduce((a,b)=>a+b.length,0)}</span>
+  </div>`;
+  for (const [cat, prods] of Object.entries(PRODUCTS)) {
+    html += `<div class="cat-link" onclick="scrollTo('${cat}')" data-cat="${cat}">
+      <span>${cat}</span>
+      <span class="cat-count">${prods.length}</span>
+    </div>`;
+  }
+  list.innerHTML = html;
+}
+
+function buildCatalog(filter = '') {
+  const main = document.getElementById('mainContent');
+  const f = filter.toLowerCase();
+  let html = '';
+
+  if (f) {
+    let results = [];
+    for (const [cat, prods] of Object.entries(PRODUCTS)) {
+      prods.filter(p => p.nombre.toLowerCase().includes(f)).forEach(p => results.push({...p, cat}));
+    }
+    if (results.length === 0) {
+      html += `<p style="color:var(--text-muted);padding:2rem">No se encontraron productos.</p>`;
+    } else {
+      html += buildTable(`Resultados (${results.length})`, results);
+    }
+  } else {
+    html += `<div class="update-date">Precios actualizados al 24/04/2026</div>`;
+    for (const [cat, prods] of Object.entries(PRODUCTS)) {
+      html += buildTable(cat, prods);
+    }
+  }
+
+  main.innerHTML = html;
+}
+
+function buildTable(cat, prods) {
+  let rows = prods.map(p => {
+    const inCart = cart[p.codigo];
+    return `<tr>
+      <td>
+        <div class="product-name">${p.nombre}</div>
+        <div class="product-code">${p.codigo}</div>
+      </td>
+      <td class="price-cell">
+        <span class="price-val">${fmt(p.mayorista)}</span>
+      </td>
+      <td class="qty-cell">
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('${p.codigo}', -1)">−</button>
+          <input class="qty-input" type="number" min="1" value="${inCart?.qty || 1}" id="qty_${p.codigo}" onchange="setQty('${p.codigo}', this.value)">
+          <button class="qty-btn" onclick="changeQty('${p.codigo}', 1)">+</button>
+          <button class="add-btn ${inCart ? 'added' : ''}" id="addbtn_${p.codigo}" onclick="addToCart('${p.codigo}', '${p.nombre.replace(/'/g,"\\'")}', ${p.mayorista})">
+            ${inCart ? '✓ En pedido' : '+ Agregar'}
+          </button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  return `<div id="cat_${cat}">
+    <div class="section-header">
+      <h2 class="section-title">${cat}</h2>
+      <span class="section-count">${prods.length} productos</span>
+    </div>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th class="price-col">Precio</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+function scrollTo(cat) {
+  if (cat === 'ALL') {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else {
+    const el = document.getElementById('cat_' + cat);
+    if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+  document.querySelectorAll('.cat-link').forEach(l => l.classList.remove('active'));
+  document.querySelector(`[data-cat="${cat}"]`)?.classList.add('active');
+}
+
+function filterProducts() {
+  const q = document.getElementById('searchInput').value;
+  buildCatalog(q);
+}
+
+function changeQty(code, delta) {
+  const input = document.getElementById('qty_' + code);
+  const val = Math.max(1, parseInt(input.value || 1) + delta);
+  input.value = val;
+  if (cart[code]) {
+    cart[code].qty = val;
+    renderCart();
+  }
+}
+
+function setQty(code, val) {
+  const q = Math.max(1, parseInt(val) || 1);
+  document.getElementById('qty_' + code).value = q;
+  if (cart[code]) {
+    cart[code].qty = q;
+    renderCart();
+  }
+}
+
+function addToCart(code, nombre, price) {
+  const qty = parseInt(document.getElementById('qty_' + code).value) || 1;
+  cart[code] = { nombre, price, qty };
+  const btn = document.getElementById('addbtn_' + code);
+  if (btn) { btn.textContent = '✓ En pedido'; btn.classList.add('added'); }
+  renderCart();
+}
+
+function removeFromCart(code) {
+  delete cart[code];
+  renderCart();
+  // Re-render catalog to update button states
+  const q = document.getElementById('searchInput').value;
+  buildCatalog(q);
+}
+
+function renderCart() {
+  const items = Object.entries(cart);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = items.length;
+
+  const container = document.getElementById('cartItems');
+  if (items.length === 0) {
+    container.innerHTML = '<div class="cart-empty">Tu pedido está vacío</div>';
+    document.getElementById('cartTotal').textContent = '$0';
+    return;
+  }
+
+  let total = 0;
+  let html = '';
+  for (const [code, item] of items) {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    html += `<div class="cart-item">
+      <div>
+        <div class="cart-item-name">${item.nombre}</div>
+        <div class="cart-item-detail">${item.qty} x ${fmt(item.price)} <button class="cart-item-remove" onclick="removeFromCart('${code}')">✕ quitar</button></div>
+      </div>
+      <div class="cart-item-price">${fmt(subtotal)}</div>
+    </div>`;
+  }
+  container.innerHTML = html;
+  document.getElementById('cartTotal').textContent = fmt(total);
+}
+
+function toggleCart() {
+  const m = document.getElementById('cartModal');
+  m.classList.toggle('open');
+}
+
+function closeCartOutside(e) {
+  if (e.target === document.getElementById('cartModal')) toggleCart();
+}
+
+function sendOrder() {
+  const name = document.getElementById('clientName').value.trim();
+  const phone = document.getElementById('clientPhone').value.trim();
+  const email = document.getElementById('clientEmail').value.trim();
+  const notes = document.getElementById('clientNotes').value.trim();
+
+  if (!name || !phone) { alert('Por favor completá nombre y teléfono.'); return; }
+
+  const items = Object.values(cart);
+  if (items.length === 0) { alert('Tu pedido está vacío.'); return; }
+
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+
+  let msg = `*NUEVO PEDIDO MAYORISTA*\n\n`;
+  msg += `*Cliente:* ${name}\n`;
+  msg += `*Teléfono:* ${phone}\n`;
+  if (email) msg += `*Email:* ${email}\n`;
+  msg += `\n*Productos:*\n`;
+  items.forEach(i => {
+    msg += `• ${i.nombre} x${i.qty} → ${fmt(i.price * i.qty)}\n`;
+  });
+  msg += `\n*Total estimado: ${fmt(total)}*`;
+  if (notes) msg += `\n\n*Notas:* ${notes}`;
+
+  const waNumber = '5491168151380';
+  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank');
+
+  document.getElementById('successMsg').style.display = 'block';
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 4000);
+}
+
+// Init
+buildSidebar();
+buildCatalog();
+</script>
+</body>
+</html>
