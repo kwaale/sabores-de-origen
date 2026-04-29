@@ -1,0 +1,350 @@
+{
+  "ADEREZOS": [
+    {
+      "codigo": "9791000001449",
+      "nombre": "ADEREZOS CONDIMAX AJI BIDON X5L XUNI",
+      "mayorista": 21830
+    },
+    {
+      "codigo": "9791000001432",
+      "nombre": "ADEREZOS CONDIMAX AJI POMO X 270GRS XUN",
+      "mayorista": 2309
+    },
+    {
+      "codigo": "9791000001487",
+      "nombre": "ADEREZOS DANICA BARBACOA SACHE  X3K",
+      "mayorista": 9857
+    },
+    {
+      "codigo": "9791000001531",
+      "nombre": "ADEREZOS DANICA GOLF  X2.9KG",
+      "mayorista": 9930
+    },
+    {
+      "codigo": "9791000001463",
+      "nombre": "ADEREZOS DANICA KETCHUP SACHE X3K",
+      "mayorista": 8352
+    },
+    {
+      "codigo": "9791000001456",
+      "nombre": "ADEREZOS DANICA MAYODAN SACHE X3K",
+      "mayorista": 5800
+    },
+    {
+      "codigo": "9791000001500",
+      "nombre": "ADEREZOS DANICA MAYONESA FIESTA  X500GR",
+      "mayorista": 1449
+    },
+    {
+      "codigo": "9791000001494",
+      "nombre": "ADEREZOS DANICA MAYONESA FIESTA SACHE X2.9",
+      "mayorista": 6960
+    },
+    {
+      "codigo": "9791000001470",
+      "nombre": "ADEREZOS DANICA MOSTAZA SACHE X3K",
+      "mayorista": 6380
+    },
+    {
+      "codigo": "9791000001913",
+      "nombre": "ADEREZOS NATURA GOLF X125GR",
+      "mayorista": 928
+    }
+  ],
+  "BEBIDAS": [
+    {
+      "codigo": "9791000001555",
+      "nombre": "BEBIDAS GLON AGUA MINERAL X500ML",
+      "mayorista": 696
+    }
+  ],
+  "CONGELADOS": [
+    {
+      "codigo": "9791000002026",
+      "nombre": "CONGELADOS BLACK LABEL HAMBURGUESAS X80GRS",
+      "mayorista": 1526
+    },
+    {
+      "codigo": "9791000001951",
+      "nombre": "CONGELADOS COOLMIND PAPAS X2K",
+      "mayorista": 6696
+    },
+    {
+      "codigo": "9791000001968",
+      "nombre": "CONGELADOS FRIAR MEDALLONES CHICOS X55GR",
+      "mayorista": 964
+    },
+    {
+      "codigo": "9791000002033",
+      "nombre": "CONGELADOS LA DELFINA MEDALLON CAJITAS DE 4 UNI X65GRS",
+      "mayorista": 1792
+    },
+    {
+      "codigo": "9791000002019",
+      "nombre": "CONGELADOS WELTY MEDALLON DE CARNE X 110GRS XUNI",
+      "mayorista": 1720
+    }
+  ],
+  "COPETIN": [
+    {
+      "codigo": "9791000001739",
+      "nombre": "COPETIN PUENTE DEL INCA LLUVIA DE PAPA XK",
+      "mayorista": 6960
+    }
+  ],
+  "DESCARTABLES": [
+    {
+      "codigo": "9791000002071",
+      "nombre": "DESCARTABLES S/M BANDEJA 105 OVAL X100",
+      "mayorista": 5501
+    },
+    {
+      "codigo": "9791000002040",
+      "nombre": "DESCARTABLES S/M BOBINA DE PAPEL XUNI",
+      "mayorista": 14060
+    },
+    {
+      "codigo": "9791000001517",
+      "nombre": "DESCARTABLES S/M BOLSA CAMISETA 40X50 XUNI",
+      "mayorista": 1157
+    },
+    {
+      "codigo": "9791000001883",
+      "nombre": "DESCARTABLES S/M ESPADITAS X100UNI",
+      "mayorista": 801
+    },
+    {
+      "codigo": "9791000002064",
+      "nombre": "DESCARTABLES S/M OBLEAS NUM 18 X100UNI",
+      "mayorista": 8237
+    },
+    {
+      "codigo": "9791000001906",
+      "nombre": "DESCARTABLES S/M POMO CONDIMENTOS XLT",
+      "mayorista": 5127
+    },
+    {
+      "codigo": "9791000001876",
+      "nombre": "DESCARTABLES S/M POMO PARA CONDIMENTOS GRANDE XUNI",
+      "mayorista": 2069
+    },
+    {
+      "codigo": "9791000001890",
+      "nombre": "DESCARTABLES S/M PORTA PANCHOS  X100",
+      "mayorista": 1400
+    },
+    {
+      "codigo": "9791000002057",
+      "nombre": "DESCARTABLES S/M PORTA PANCHOS X500UN",
+      "mayorista": 6998
+    }
+  ],
+  "EMBUTIDOS": [
+    {
+      "codigo": "9791000002002",
+      "nombre": "EMBUTIDOS BARK SALCHICHAS SUPER PANCHO X 6 XUNI",
+      "mayorista": 1955
+    },
+    {
+      "codigo": "9791000001999",
+      "nombre": "EMBUTIDOS CAP SALCHICHAS CHICAS X6UNI",
+      "mayorista": 962
+    },
+    {
+      "codigo": "9791000001944",
+      "nombre": "EMBUTIDOS CARCARAÑA SALCHICHAS X190GRS",
+      "mayorista": 966
+    },
+    {
+      "codigo": "9791000001937",
+      "nombre": "EMBUTIDOS FRIAR SACHICHAS X890GR",
+      "mayorista": 4538
+    },
+    {
+      "codigo": "9791000001982",
+      "nombre": "EMBUTIDOS GRANJA IRIS SALCHICHA X12",
+      "mayorista": 4320
+    }
+  ],
+  "GRASA": [
+    {
+      "codigo": "9791000001524",
+      "nombre": "GRASA OLGUITA BOBINA PAQUETE X500GRS",
+      "mayorista": 1682
+    }
+  ],
+  "LACTEOS": [
+    {
+      "codigo": "9791000001920",
+      "nombre": "LACTEOS TONADITA CREMA DE LECHE X200CM",
+      "mayorista": 1931
+    }
+  ],
+  "LIMPIEZA": [
+    {
+      "codigo": "9791000001838",
+      "nombre": "LIMPIEZA S/M CABO ESCOBILLON XUN",
+      "mayorista": 1534
+    },
+    {
+      "codigo": "9791000001852",
+      "nombre": "LIMPIEZA S/M DESENGRASANTE BIDON X5L",
+      "mayorista": 6490
+    },
+    {
+      "codigo": "9791000001845",
+      "nombre": "LIMPIEZA S/M DESODORANTE PISO BIDON X5LT",
+      "mayorista": 4248
+    },
+    {
+      "codigo": "9791000001869",
+      "nombre": "LIMPIEZA S/M DETERGENTE BIDON X5K",
+      "mayorista": 5310
+    },
+    {
+      "codigo": "9791000001821",
+      "nombre": "LIMPIEZA S/M ESCOBILLON XUNI",
+      "mayorista": 2950
+    },
+    {
+      "codigo": "9791000001791",
+      "nombre": "LIMPIEZA S/M ESPONJA XUNI",
+      "mayorista": 472
+    },
+    {
+      "codigo": "9791000001814",
+      "nombre": "LIMPIEZA S/M TRAPO DE PISO XUNI",
+      "mayorista": 1770
+    },
+    {
+      "codigo": "9791000001807",
+      "nombre": "LIMPIEZA S/M VALERINA TRAPO AMARILLO XUNI",
+      "mayorista": 531
+    }
+  ],
+  "MENTECAS": [
+    {
+      "codigo": "9791000001777",
+      "nombre": "MENTECAS GLUCELAT MANTECA X200GR",
+      "mayorista": 2104
+    }
+  ],
+  "PASTAS": [
+    {
+      "codigo": "9791000001685",
+      "nombre": "PASTAS IL BAMBINO CAPELETTIS CARNE X500",
+      "mayorista": 1669
+    },
+    {
+      "codigo": "9791000001654",
+      "nombre": "PASTAS IL BAMBINO CAPELLETTIS JAMON Y MUZZARELLA X500",
+      "mayorista": 1669
+    },
+    {
+      "codigo": "9791000001975",
+      "nombre": "PASTAS IL BAMBINO MASA EMPANDAS/HORNO,CRIOLLAS XUNI",
+      "mayorista": 869
+    },
+    {
+      "codigo": "9791000001722",
+      "nombre": "PASTAS IL BAMBINO ÑOQUIS X500GR",
+      "mayorista": 1438
+    },
+    {
+      "codigo": "9791000001692",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES 4 QUESOS X500",
+      "mayorista": 1699
+    },
+    {
+      "codigo": "9791000001647",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES 4 QUESOS XK",
+      "mayorista": 2693
+    },
+    {
+      "codigo": "9791000001715",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES JAMON Y MUZZARELLA X500GR",
+      "mayorista": 1699
+    },
+    {
+      "codigo": "9791000001623",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES JAMON Y MUZZARELLA XK",
+      "mayorista": 2693
+    },
+    {
+      "codigo": "9791000001616",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES POLLO Y ESPINACA XK",
+      "mayorista": 2693
+    },
+    {
+      "codigo": "9791000001708",
+      "nombre": "PASTAS IL BAMBINO RAVIOLES POLLO Y ESPINACAS X500",
+      "mayorista": 1699
+    },
+    {
+      "codigo": "9791000001630",
+      "nombre": "PASTAS IL BAMBINO SORRENTINOS JAMON Y MUZZARELLA X500GR",
+      "mayorista": 2155
+    },
+    {
+      "codigo": "9791000001661",
+      "nombre": "PASTAS IL BAMBINO TALLARINES CINTA 500GR",
+      "mayorista": 1137
+    },
+    {
+      "codigo": "9791000001678",
+      "nombre": "PASTAS IL BAMBINO TALLARINES FRESCOS X500GR",
+      "mayorista": 1274
+    },
+    {
+      "codigo": "9791000001753",
+      "nombre": "PASTAS LA MINUCHA MOSTACHOL X500GRS",
+      "mayorista": 720
+    },
+    {
+      "codigo": "9791000001746",
+      "nombre": "PASTAS LA MINUCHA TIRABUZON X500GR",
+      "mayorista": 720
+    }
+  ],
+  "PRODUCCION": [
+    {
+      "codigo": "9791000001579",
+      "nombre": "PRODUCCION S/M JAMON FETEADO XK",
+      "mayorista": 9090
+    },
+    {
+      "codigo": "9791000001562",
+      "nombre": "PRODUCCION S/M QUESO FETEADO XK",
+      "mayorista": 10543
+    }
+  ],
+  "SALSAS": [
+    {
+      "codigo": "9791000001586",
+      "nombre": "SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X1LT",
+      "mayorista": 1392
+    },
+    {
+      "codigo": "9791000001609",
+      "nombre": "SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X310GR",
+      "mayorista": 804
+    },
+    {
+      "codigo": "9791000001593",
+      "nombre": "SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X500GR",
+      "mayorista": 1160
+    },
+    {
+      "codigo": "9791000001760",
+      "nombre": "SALSAS LATA SALSA DE TOMATE X8K",
+      "mayorista": 8400
+    }
+  ],
+  "TUBO": [
+    {
+      "codigo": "9791000001548",
+      "nombre": "TUBO S/M GAS CARBONICO XUNI",
+      "mayorista": 25800
+    }
+  ]
+}
