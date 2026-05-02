@@ -78,6 +78,11 @@
       color: var(--accent);
       letter-spacing: 0.05em;
       text-transform: uppercase;
+
+    }
+
+    .logo img {
+      height: 40px;
     }
 
     .logo span {
@@ -639,7 +644,9 @@
 <body>
 
   <header>
-    <div class="logo">Mayorista <span>Catálogo</span></div>
+    <div class="logo">
+      <img src="logo.jpeg" alt="Sabores de Origen">
+    </div>
     <div class="header-search">
       <input type="text" id="searchInput" placeholder="🔍  Buscar producto..." oninput="filterProducts()">
     </div>
@@ -706,14 +713,14 @@
     function buildSidebar() {
       const list = document.getElementById('catList');
       let html = `<div class="cat-link active" onclick="scrollTo('ALL')" data-cat="ALL">
-    <span>Todos</span>
-    <span class="cat-count">${Object.values(PRODUCTS).reduce((a, b) => a + b.length, 0)}</span>
-  </div>`;
+      <span>Todos</span>
+      <span class="cat-count">${Object.values(PRODUCTS).reduce((a, b) => a + b.length, 0)}</span>
+    </div>`;
       for (const [cat, prods] of Object.entries(PRODUCTS)) {
         html += `<div class="cat-link" onclick="scrollTo('${cat}')" data-cat="${cat}">
-      <span>${cat}</span>
-      <span class="cat-count">${prods.length}</span>
-    </div>`;
+        <span>${cat}</span>
+        <span class="cat-count">${prods.length}</span>
+      </div>`;
       }
       list.innerHTML = html;
     }
@@ -747,42 +754,42 @@
       let rows = prods.map(p => {
         const inCart = cart[p.codigo];
         return `<tr>
-      <td>
-        <div class="product-name">${p.nombre}</div>
-        <div class="product-code">${p.codigo}</div>
-      </td>
-      <td class="price-cell">
-        <span class="price-val">${fmt(p.mayorista)}</span>
-      </td>
-      <td class="qty-cell">
-        <div class="qty-control">
-          <button class="qty-btn" onclick="changeQty('${p.codigo}', -1)">−</button>
-          <input class="qty-input" type="number" min="1" value="${inCart?.qty || 1}" id="qty_${p.codigo}" onchange="setQty('${p.codigo}', this.value)">
-          <button class="qty-btn" onclick="changeQty('${p.codigo}', 1)">+</button>
-          <button class="add-btn ${inCart ? 'added' : ''}" id="addbtn_${p.codigo}" onclick="addToCart('${p.codigo}', '${p.nombre.replace(/'/g, "\\'")}', ${p.mayorista})">
-            ${inCart ? '✓ En pedido' : '+ Agregar'}
-          </button>
-        </div>
-      </td>
-    </tr>`;
+        <td>
+          <div class="product-name">${p.nombre}</div>
+          <div class="product-code">${p.codigo}</div>
+        </td>
+        <td class="price-cell">
+          <span class="price-val">${fmt(p.mayorista)}</span>
+        </td>
+        <td class="qty-cell">
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('${p.codigo}', -1)">−</button>
+            <input class="qty-input" type="number" min="1" value="${inCart?.qty || 1}" id="qty_${p.codigo}" onchange="setQty('${p.codigo}', this.value)">
+            <button class="qty-btn" onclick="changeQty('${p.codigo}', 1)">+</button>
+            <button class="add-btn ${inCart ? 'added' : ''}" id="addbtn_${p.codigo}" onclick="addToCart('${p.codigo}', '${p.nombre.replace(/'/g, "\\'")}', ${p.mayorista})">
+              ${inCart ? '✓ En pedido' : '+ Agregar'}
+            </button>
+          </div>
+        </td>
+      </tr>`;
       }).join('');
 
       return `<div id="cat_${cat}">
-    <div class="section-header">
-      <h2 class="section-title">${cat}</h2>
-      <span class="section-count">${prods.length} productos</span>
-    </div>
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th class="price-col">Precio</th>
-          <th>Cantidad</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>`;
+      <div class="section-header">
+        <h2 class="section-title">${cat}</h2>
+        <span class="section-count">${prods.length} productos</span>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th class="price-col">Precio</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
     }
 
     function scrollTo(cat) {
@@ -854,12 +861,12 @@
         const subtotal = item.price * item.qty;
         total += subtotal;
         html += `<div class="cart-item">
-      <div>
-        <div class="cart-item-name">${item.nombre}</div>
-        <div class="cart-item-detail">${item.qty} x ${fmt(item.price)} <button class="cart-item-remove" onclick="removeFromCart('${code}')">✕ quitar</button></div>
-      </div>
-      <div class="cart-item-price">${fmt(subtotal)}</div>
-    </div>`;
+        <div>
+          <div class="cart-item-name">${item.nombre}</div>
+          <div class="cart-item-detail">${item.qty} x ${fmt(item.price)} <button class="cart-item-remove" onclick="removeFromCart('${code}')">✕ quitar</button></div>
+        </div>
+        <div class="cart-item-price">${fmt(subtotal)}</div>
+      </div>`;
       }
       container.innerHTML = html;
       document.getElementById('cartTotal').textContent = fmt(total);
