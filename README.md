@@ -1,3 +1,6 @@
+Para actualizar correr
+
+node build-products.js
 # sabores-de-origen
 # 🎨 Paleta de Colores – Marca
 

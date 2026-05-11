@@ -1,4 +1,21 @@
 {
+  "ACEITUNAS": [
+    {
+      "codigo": "9791000002101",
+      "nombre": "ACEITUNAS S/M BIDON FILETEADAS X5K",
+      "mayorista": 34800
+    },
+    {
+      "codigo": "9791000002088",
+      "nombre": "ACEITUNAS S/M BIDON NUMERO 2 XK",
+      "mayorista": 19140
+    },
+    {
+      "codigo": "9791000002095",
+      "nombre": "ACEITUNAS S/M BIDON NUMERO 3 X5K",
+      "mayorista": 16240
+    }
+  ],
   "ADEREZOS": [
     {
       "codigo": "9791000001449",
@@ -77,12 +94,12 @@
     {
       "codigo": "9791000002033",
       "nombre": "CONGELADOS LA DELFINA MEDALLON CAJITAS DE 4 UNI X65GRS",
-      "mayorista": 1792
+      "mayorista": 1791
     },
     {
       "codigo": "9791000002019",
       "nombre": "CONGELADOS WELTY MEDALLON DE CARNE X 110GRS XUNI",
-      "mayorista": 1720
+      "mayorista": 1691
     }
   ],
   "COPETIN": [
@@ -109,6 +126,16 @@
       "mayorista": 1157
     },
     {
+      "codigo": "9791000002170",
+      "nombre": "DESCARTABLES S/M CAJAS DE PIZZA REFORZADAS X50",
+      "mayorista": 10868
+    },
+    {
+      "codigo": "9791000002187",
+      "nombre": "DESCARTABLES S/M ESPADITAS X1000UNI",
+      "mayorista": 6187
+    },
+    {
       "codigo": "9791000001883",
       "nombre": "DESCARTABLES S/M ESPADITAS X100UNI",
       "mayorista": 801
@@ -117,11 +144,6 @@
       "codigo": "9791000002064",
       "nombre": "DESCARTABLES S/M OBLEAS NUM 18 X100UNI",
       "mayorista": 8237
-    },
-    {
-      "codigo": "9791000001906",
-      "nombre": "DESCARTABLES S/M POMO CONDIMENTOS XLT",
-      "mayorista": 5127
     },
     {
       "codigo": "9791000001876",
@@ -137,6 +159,16 @@
       "codigo": "9791000002057",
       "nombre": "DESCARTABLES S/M PORTA PANCHOS X500UN",
       "mayorista": 6998
+    },
+    {
+      "codigo": "9791000002156",
+      "nombre": "DESCARTABLES S/M POTE 55 NATURAL X100",
+      "mayorista": 8413
+    },
+    {
+      "codigo": "9791000002163",
+      "nombre": "DESCARTABLES S/M TAPA POTE NAT 55 X100",
+      "mayorista": 4827
     }
   ],
   "EMBUTIDOS": [
@@ -166,6 +198,13 @@
       "mayorista": 4320
     }
   ],
+  "ENLATADOS": [
+    {
+      "codigo": "9791000002125",
+      "nombre": "ENLATADOS CUMANA MORRON X750",
+      "mayorista": 4888
+    }
+  ],
   "GRASA": [
     {
       "codigo": "9791000001524",
@@ -175,9 +214,9 @@
   ],
   "LACTEOS": [
     {
-      "codigo": "9791000001920",
-      "nombre": "LACTEOS TONADITA CREMA DE LECHE X200CM",
-      "mayorista": 1931
+      "codigo": "9791000002118",
+      "nombre": "LACTEOS MILKAUT CREMA DE LECHE X200CC",
+      "mayorista": 2624
     }
   ],
   "LIMPIEZA": [
@@ -222,7 +261,7 @@
       "mayorista": 531
     }
   ],
-  "MENTECAS": [
+  "MANTECAS": [
     {
       "codigo": "9791000001777",
       "nombre": "MENTECAS GLUCELAT MANTECA X200GR",
@@ -243,7 +282,7 @@
     {
       "codigo": "9791000001975",
       "nombre": "PASTAS IL BAMBINO MASA EMPANDAS/HORNO,CRIOLLAS XUNI",
-      "mayorista": 869
+      "mayorista": 937
     },
     {
       "codigo": "9791000001722",
@@ -310,19 +349,19 @@
     {
       "codigo": "9791000001579",
       "nombre": "PRODUCCION S/M JAMON FETEADO XK",
-      "mayorista": 9090
+      "mayorista": 8700
     },
     {
       "codigo": "9791000001562",
       "nombre": "PRODUCCION S/M QUESO FETEADO XK",
-      "mayorista": 10543
+      "mayorista": 9800
     }
   ],
   "SALSAS": [
     {
       "codigo": "9791000001586",
       "nombre": "SALSAS CABALLITO MENDOCINO SALSA DE TOMATE X1LT",
-      "mayorista": 1392
+      "mayorista": 1379
     },
     {
       "codigo": "9791000001609",
